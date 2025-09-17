@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ESP32 LED Control</title>
+</head>
+<body style="text-align:center; font-family:Arial;">
+  <h2>ESP32 LED Control via ThingSpeak</h2>
+  <button onclick="updateField(1)">Turn ON</button>
+  <button onclick="updateField(0)">Turn OFF</button>
+
+  <script>
+    const API_KEY = "807P3C5380ZV3MMW";
+    const CHANNEL_ID = "3049052";
+
+    function updateField(value) {
+      let url = `https://api.thingspeak.com/update?api_key=${API_KEY}&field1=${value}`;
+      fetch(url)
+        .then(response => response.text())
+        .then(data => alert("Updated! Entry ID: " + data))
+        .catch(error => alert("Error: " + error));
+    }
+  </script>
+</body>
+</html>
